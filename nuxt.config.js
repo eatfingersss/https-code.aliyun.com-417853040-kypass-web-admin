@@ -16,11 +16,29 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~assets/css/main.css'],
+  css: [
+    {src: '~assets/css/main.css'},
+    {src: 'element-ui/lib/theme-chalk/index.css'}
+  ],
   /*
   ** Customize the progress-bar color
   */
   loading: { color: '#3B8070' },
+  axios: {
+    proxy: true, // Can be also an object with default options
+    withCredentials: true
+  },
+  modules: [
+    '@nuxtjs/axios'
+  ],
+  proxy: {
+    '/api/': 'http://127.0.0.1:6060'
+  },
+  plugins: [
+    {src: '@/plugins/element-ui'},
+    {src: '@/plugins/axios'}
+    // { src: '~/plugins/flexible', ssr: false }
+  ],
   /*
    ** Build configuration
    */
