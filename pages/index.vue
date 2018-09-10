@@ -1,18 +1,32 @@
 <template>
-  <section class="container">
-    <img src="../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title">
-      Universal Vue.js Application Framework
-    </h1>
-    <nuxt-link class="button" to="/about">
-      About page
-    </nuxt-link>
-  </section>
+  <User></User>
 </template>
-
+<script>
+  import User from './user'
+export default {
+    name: 'index',
+//        组件
+    components: {
+      User: User
+    },
+//        数据
+    data() {
+      return {
+      }
+    },
+//        计算属性
+    computed: {},
+//        方法
+    methods: {
+    },
+    mounted() {
+    },
+//         监听数据
+    watch: {},
+//         组件参数
+    props: {}
+  }
+</script>
 <style scoped>
-.title
-{
-  margin: 50px 0;
-}
+  /*……*/
 </style>
