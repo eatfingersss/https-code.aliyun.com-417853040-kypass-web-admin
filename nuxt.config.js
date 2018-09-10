@@ -32,7 +32,8 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   proxy: {
-    '/api/': 'http://127.0.0.1:6060'
+    // '/api/': 'http://127.0.0.1:6060'
+    '/api/': 'http://www.ky105guo.top:9191/mock/18'
   },
   plugins: [
     {src: '@/plugins/element-ui'},

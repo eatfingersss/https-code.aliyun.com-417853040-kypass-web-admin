@@ -1,26 +1,85 @@
 <template>
-    <div>
-      <i class="el-icon-edit">ID</i>
-      <el-input v-model="data.id" placeholder="ID"></el-input>
-      <el-button v-on:click="testApi()">切换</el-button>
-      <br>
-      <label for="title">标题</label>
-      <!-- <input type="text" id="title" v-model="data.title"> -->
-      <br>
-      <label for="link">链接</label>
-      <!-- <input type="text" id="link" v-model="data.link"> -->
-      <br>
-      <label for="content">内容</label>
-      <!-- <input type="text" id="content" v-model="data.content"> -->
-      <br>
-      <button v-on:click="updateBook()">提交</button>
-      <button v-on:click="createBook()">新增</button>
-      <br>
-      {{data}}
-    </div>
+  <el-container>
+    <el-header>
+      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <div style="float: left"><h2 style="margin: 0 auto;line-height: 60px;width: 180px">科艺通管理后台</h2></div>
+        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">我的工作台</template>
+          <el-menu-item index="2-1">选项1</el-menu-item>
+          <el-menu-item index="2-2">选项2</el-menu-item>
+          <el-menu-item index="2-3">选项3</el-menu-item>
+          <el-submenu index="2-4">
+            <template slot="title">选项4</template>
+            <el-menu-item index="2-4-1">选项1</el-menu-item>
+            <el-menu-item index="2-4-2">选项2</el-menu-item>
+            <el-menu-item index="2-4-3">选项3</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+        <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+      </el-menu>
+    </el-header>
+    <el-container>
+      <el-aside width="200px">
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose">
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>导航一</span>
+            </template>
+            <el-menu-item-group>
+              <template slot="title">分组一</template>
+              <el-menu-item index="1-1">选项1</el-menu-item>
+              <el-menu-item index="1-2">选项2</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="分组2">
+              <el-menu-item index="1-3">选项3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="1-4">
+              <template slot="title">选项4</template>
+              <el-menu-item index="1-4-1">选项1</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-menu-item index="2">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航二</span>
+          </el-menu-item>
+          <el-menu-item index="3" disabled>
+            <i class="el-icon-document"></i>
+            <span slot="title">导航三</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-setting"></i>
+            <span slot="title">导航四</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-main>
+        <el-tabs type="border-card">
+          <el-tab-pane label="用户管理">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+              <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+              <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+            </el-breadcrumb>
+            用户管理
+          </el-tab-pane>
+          <el-tab-pane label="配置管理">配置管理</el-tab-pane>
+          <el-tab-pane label="角色管理">角色管理</el-tab-pane>
+          <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+        </el-tabs>
+      </el-main>
+    </el-container>
+  </el-container>
+
 </template>
 <script>
-  import requestApi from '../assets/js/requestApi.js'
   export default {
     name: 'demo',
 //        组件
@@ -28,31 +87,25 @@
 //        数据
     data() {
       return {
-        data: {
-          id: 244
-        }
+        activeIndex: '1',
+        isCollapse: true
       }
     },
 //        计算属性
     computed: {},
 //        方法
     methods: {
-      testApi: async function () {
-        let obj = await requestApi.testApi(this, {id: this.data.id})
-        this.data = obj.result
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath)
       },
-      createBook: async function () {
-        let obj = await requestApi.wRequest('/api/user', this, this.data)
-        if (obj === true) {
-          alert(obj)
-        } else {
-          alert(obj)
-        }
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath)
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath)
       }
     },
-    mounted() {
-      this.testApi()
-    },
+    mounted() {},
 //         监听数据
     watch: {},
 //         组件参数
@@ -60,5 +113,5 @@
   }
 </script>
 <style scoped>
-    /*……*/
+  /*……*/
 </style>
