@@ -10,7 +10,9 @@
       <br>
       <List></List>
     </el-tab-pane>
-    <el-tab-pane label="配置管理">配置管理</el-tab-pane>
+    <el-tab-pane label="配置管理">
+      <UserForm></UserForm>
+    </el-tab-pane>
     <el-tab-pane label="角色管理">角色管理</el-tab-pane>
     <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
   </el-tabs>
@@ -18,12 +20,14 @@
 
 <script>
   import List from './user/list'
+  import UserForm from './user/userForm'
 
   export default {
     name: 'user',
 //        组件
     components: {
-      List: List
+      List: List,
+      UserForm: UserForm
     },
 //        数据
     data() {
