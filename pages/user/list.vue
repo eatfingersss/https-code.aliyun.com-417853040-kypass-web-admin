@@ -8,7 +8,7 @@
         fixed
         prop="id"
         label="id"
-        width="150">
+        width="50">
       </el-table-column>
       <el-table-column
         prop="name"
@@ -39,11 +39,43 @@
         label="操作"
         width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
+          <el-button type="text" size="small" @click="dialogFormVisible = true">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- Form -->
+<el-dialog title="编辑账户" :visible.sync="dialogFormVisible">
+  <el-form :model="form">
+    <el-form-item label="姓名" :label-width="formLabelWidth">
+      <el-input v-model="form.name" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="邮箱" :label-width="formLabelWidth">
+      <el-input v-model="form.name" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="手机" :label-width="formLabelWidth">
+      <el-input v-model="form.name" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="密码" :label-width="formLabelWidth">
+      <el-input v-model="form.name" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="账户类型" :label-width="formLabelWidth">
+      <el-select v-model="form.region" placeholder="请选择账户类型">
+        <el-option label="超级管理员" value="shanghai"></el-option>
+        <el-option label="学生" value="beijing"></el-option>
+        <el-option label="教师" value="beijing"></el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item label="修改状态" :label-width="formLabelWidth">
+      <el-button>冻结账号</el-button>
+    </el-form-item>
+  </el-form>
+  <div slot="footer" class="dialog-footer">
+    <el-button @click="dialogFormVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+  </div>
+</el-dialog>
+
   </div>
 </template>
 
@@ -54,7 +86,19 @@
 
     data() {
       return {
-        tableData: []
+        tableData: [],
+        dialogFormVisible: false,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px'
       }
     },
     methods: {
